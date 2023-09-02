@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.StringTokenizer;
 
-public class AuthorSol {
+public class OtherSol {
 	
 	public static void main(String[] args) {
 		FastScanner fs = new FastScanner();
@@ -16,15 +16,17 @@ public class AuthorSol {
 		for (int tc = 1; tc <= T; tc++) {
 			long n = fs.nextLong();
 			long lcm = 1, ans = 0;
-			for (long i = 1; ; i++) {
+			for (long i = 2; ; i++) {
+				long before = n / lcm;
 				lcm = getLcm(lcm, i);
-				System.out.println(lcm);
+				long after = n / lcm;
+				ans += (before - after) * i;
+				ans %= mod;
 				if (lcm > n) {
 					break;
 				}
-				ans += n / lcm;
 			}
-			System.out.println((ans + n) % mod);
+			System.out.println(ans);
 		}
 		out.close();
 	}
